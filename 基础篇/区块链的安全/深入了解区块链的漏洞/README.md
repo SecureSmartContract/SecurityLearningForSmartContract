@@ -44,7 +44,7 @@
 
 
 
-<table><tr><td bgcolor="#7FFF00">未完，待续...</td><tr></table>
+<font color="#7FFF00">未完，待续...<font>
 
 
 
