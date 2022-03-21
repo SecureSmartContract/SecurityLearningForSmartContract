@@ -42,6 +42,8 @@
 
 总这，在这篇论文里提供了一组方法学，来分析区块链的漏洞，来构建相关的知识基础，并挖掘出这些漏洞内在的东西。为了方便以后研究，我们也将在社区里，公开我们收集好的数据集。
 
+# [背景](https://github.com/SecureSmartContract/SecurityLearningForSmartContract/blob/main/%E5%9F%BA%E7%A1%80%E7%AF%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E5%AE%89%E5%85%A8/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E6%BC%8F%E6%B4%9E/%E8%83%8C%E6%99%AF.md)
+
 
 
 *未完，待续...*
