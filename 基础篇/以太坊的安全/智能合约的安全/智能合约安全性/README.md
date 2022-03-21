@@ -32,6 +32,57 @@
 + 项目代码回滚的可能性较低
 
 ## 攻击和漏洞
+既然您正在使用高效的开发流程编写solididity代码，那么让我们看看一些常见的solididity漏洞，看看哪些地方可能出错。
+
+### 重入攻击
+重入攻击是开发智能合约时需要考虑的最大和最重要的安全问题之一。虽然EVM不能同时运行多个合约，但一个合约可以调用另一个合约来暂停合约的执行和内存状态，直到调用返回，此时代码仍会正常执行。这种暂停和重新启动可能会产生一个称为“重入攻击”的漏洞。
+
+下面是一个容易被重入攻击的合约的简单版本：
+```
+// THIS CONTRACT HAS INTENTIONAL VULNERABILITY, DO NOT COPY
+contract Victim {
+    mapping (address => uint256) public balances;
+
+    function deposit() external payable {
+        balances[msg.sender] += msg.value;
+    }
+
+    function withdraw() external {
+        uint256 amount = balances[msg.sender];
+        (bool success, ) = msg.sender.call.value(amount)("");
+        require(success);
+        balances[msg.sender] = 0;
+    }
+}
+```
+
+为了允许用户提取他们之前存储在合同中的ETH，这个功能
+1. 读取用户的余额
+2. 发送用户的余额
+3. 将他们的余额重置为0，这样他们就不能再次提取余额了
+
+如果合约被一个普通的帐户调用（比如你自己的Metamask帐户），这个函数会像预期的那样：msg.sender.call.value() 只是发送你的帐户 ETH。然而，智能合约也能调用其他合约。如果一个自定义的恶意合约调用了 withdraw()， msg.sender.call.value() 不仅会发送一定量的 ETH，还会隐式调用该合约来开始执行代码。想象一下这个恶意合约：
+```
+contract Attacker {
+    function beginAttack() external payable {
+        Victim(VICTIM_ADDRESS).deposit.value(1 ether)();
+        Victim(VICTIM_ADDRESS).withdraw();
+    }
+
+    function() external payable {
+        if (gasleft() > 40000) {
+            Victim(VICTIM_ADDRESS).withdraw();
+        }
+    }
+}
+```
+
+
+
+### 如何处理重入攻击（错误的方法）
+
+
+### 如何处理重入攻击（正确的方法）
 
 
 ## 更多攻击类型
