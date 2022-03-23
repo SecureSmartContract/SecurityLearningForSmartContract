@@ -77,7 +77,26 @@ contract Attacker {
 }
 ```
 
+调用 attack.beginattack() 将开始一个循环，看起来像：
+```
+0) 攻击者账户调用了带有 1 个 ETH 的 attack.beginattack()
+0) attack.beginattack() 向受害者存入 1 个 ETH
+  1) 攻击者 → Victim.withdraw()
+  1) 受害者读取余额 (msg.sender)
+  1) 受害者向攻击者发送 ETH (执行默认函数)
+    2) 攻击者 → Victim.withdraw()
+    2) 受害者读取余额 (msg.sender)
+    2) 受害者向攻击者发送 ETH (执行默认函数)
+      3) 攻击者 → Victim.withdraw()
+      3) 受害者读取余额 (msg.sender)
+      3) 受害者向攻击者发送 ETH (执行默认函数)
+        4) 攻击者最终因账户没有足够的 gas 费而停止调用
+      3) balances[msg.sender] = 0;
+    2) balances[msg.sender] = 0; (已经是0了)
+  1) balances[msg.sender] = 0; (已经是0了)
+```
 
+攻击者账户使用 1 个 ETH 调用 Attacker.beginAttack 函数重入攻击受害者账户，取走比它提供的更多的 ETH（从其他用户的余额中取走，导致受害者余额减少）。
 
 ### 如何处理重入攻击（错误的方法）
 
