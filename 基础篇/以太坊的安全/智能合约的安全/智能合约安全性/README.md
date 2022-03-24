@@ -218,13 +218,63 @@ contract NoLongerAVictim {
 + [论坛](https://forum.openzeppelin.com/t/online-erc20-contract-verifier/1575)
 
 ### 形式化验证
-
-
+**形式化验证的信息**
++ [智能合约的形式化验证是如何工作的](https://runtimeverification.com/blog/how-formal-verification-of-smart-contracts-works/) *July 20, 2018 - Brian Marick*
++ [形式化验证如何确保智能合约的完美无缺](https://media.consensys.net/how-formal-verification-can-ensure-flawless-smart-contracts-cbda8ad99bd1?gi=3b3d600f1f88) *Jan 29, 2018 - Bernard Mueller*
 
 ### 使用工具
+两个最流行的智能合同安全分析工具是：
++ [Slither](https://github.com/crytic/slither) 来自 [Trail of Bits](https://www.trailofbits.com/) （托管版本：[Crytic](https://www.crytic.io/)）
++ [Mythril](https://github.com/ConsenSys/mythril) 来自 [ConsenSys](https://consensys.net/) （托管版本：[MythX](https://mythx.io/)）
 
+两者都是分析代码和报告问题的有用工具。每个都有一个[商业]托管版本，但也可以免费在本地运行。下面是如何运行 Slither 的一个快速示例，它可以在 Docker 映像 trailofbits/eth-security-toolbox 中获得。如果你还没有安装，你需要[安装 Docker](https://docs.docker.com/get-docker/)。
+```
+$ mkdir test-slither
+$ curl https://gist.githubusercontent.com/epheph/460e6ff4f02c4ac582794a41e1f103bf/raw/9e761af793d4414c39370f063a46a3f71686b579/gistfile1.txt > bad-contract.sol
+$ docker run -v `pwd`:/share  -it --rm trailofbits/eth-security-toolbox
+docker$ cd /share
+docker$ solc-select 0.5.11
+docker$ slither bad-contract.sol
+```
 
+将生成以下输出：
+```
+ethsec@1435b241ca60:/share$ slither bad-contract.sol
+INFO:Detectors:
+Reentrancy in Victim.withdraw() (bad-contract.sol#11-16):
+    External calls:
+    - (success) = msg.sender.call.value(amount)() (bad-contract.sol#13)
+    State variables written after the call(s):
+    - balances[msg.sender] = 0 (bad-contract.sol#15)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities
+INFO:Detectors:
+Low level call in Victim.withdraw() (bad-contract.sol#11-16):
+    - (success) = msg.sender.call.value(amount)() (bad-contract.sol#13)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+INFO:Slither:bad-contract.sol analyzed (1 contracts with 46 detectors), 2 result(s) found
+INFO:Slither:Use https://crytic.io/ to get access to additional detectors and GitHub integration
+```
+
+Slither 已经在这里确定了重入的可能性，确定了问题可能发生的关键线路，并为我们提供了有关问题的更多细节的链接：
+
+&nbsp;&nbsp;&nbsp;&nbsp;参考：[https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities](https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities)
+
+允许您快速了解代码的潜在问题。和所有自动化测试工具一样，Slither 也不是完美的，它会在报告方面出错。它可以警告潜在的重入，即使没有可利用的漏洞。通常，在代码更改之间检查 Slither 输出的差异非常有启示性，有助于发现比等到项目代码完成之前引入的漏洞早得多的漏洞。
 
 ## 延伸阅读
+**智能合约安全最佳实践指南**
++ [consensys.github.io/smart-contract-best-practices/](consensys.github.io/smart-contract-best-practices/)
++ [Github](https://github.com/ConsenSys/smart-contract-best-practices/)
++ [安全建议和最佳实践的聚合集合](https://github.com/guylando/KnowledgeLists/blob/master/EthereumSmartContracts.md)
+
+**智能合约安全验证标准（SCSVS）**
++ [securing.github.io/SCSVS/](https://securing.github.io/SCSVS/)
+
+*还有哪些社区资源帮助过你？请编辑这个页面并添加它！*
 
 ## 相关教程
++ [安全开发流程](https://ethereum.org/en/developers/tutorials/secure-development-workflow/)
++ [如何使用 Slither 找到智能合同漏洞](https://ethereum.org/en/developers/tutorials/how-to-use-slither-to-find-smart-contract-bugs/)
++ [如何使用 Manticore 找到智能合同的漏洞](https://ethereum.org/en/developers/tutorials/how-to-use-manticore-to-find-smart-contract-bugs/)
++ [安全指引](https://ethereum.org/en/developers/tutorials/smart-contract-security-guidelines/)
++ [令牌安全](https://ethereum.org/en/developers/tutorials/token-integration-checklist/)
