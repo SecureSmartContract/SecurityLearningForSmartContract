@@ -163,12 +163,32 @@ require(tx.origin == msg.sender)
 然而，这仍然不是一个好的解决方案。以太坊最令人兴奋的一个方面是它的可组合性，智能合约相互集成和构建。通过使用上面的代码，您限制了项目的有用性。
 
 ### 如何处理重入攻击（正确的方法）
+通过简单地切换存储更新和外部调用的顺序，我们可以防止启用攻击的可重入性条件。尽管可能调用提款，但攻击者不会从中受益，因为余额存储已经被设置为0。
+```
+contract NoLongerAVictim {
+    function withdraw() external {
+        uint256 amount = balances[msg.sender];
+        balances[msg.sender] = 0;
+        (bool success, ) = msg.sender.call.value(amount)("");
+        require(success);
+    }
+}
+```
 
+上面的代码遵循“检查-效果-交互”设计模式，这有助于防止重入。你可以在这里[阅读更多关于检查-效果-交互的信息](https://fravoll.github.io/solidity-patterns/checks_effects_interactions.html)
 
 ### 如何处理重入攻击（核心选项）
-
+任何时候，当你将ETH发送到一个不可信的地址，或者与一个未知的合约（例如调用 transfer() 到用户提供的令牌地址）进行交互时，你就有了重入的可能性。**通过设计既不发送 ETH 也不调用不可信合约的合约，可以防止可重入的可能性！**
 
 ## 更多攻击类型
+上述攻击类型涵盖了智能合约编码问题（重入）和以太坊的古怪之处（在合约地址可用代码之前，在合约构造函数内运行代码）。还有很多很多的攻击类型需要注意，比如:
++ 前台运行
++ ETH 发送拒绝
++ 整数上溢/下溢
+
+延伸阅读：
++ [Consensys智能合约已知攻击](https://consensys.github.io/smart-contract-best-practices/attacks/) - 一个最重要的漏洞的非常易读的解释，并有大量示例代码。
++ [SWC Registry](https://swcregistry.io/docs/SWC-128) - 适用于以太坊和智能合约的CWE推荐列表。
 
 ## 安全工具
 
