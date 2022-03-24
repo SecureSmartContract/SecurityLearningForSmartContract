@@ -191,6 +191,39 @@ contract NoLongerAVictim {
 + [SWC Registry](https://swcregistry.io/docs/SWC-128) - 适用于以太坊和智能合约的CWE推荐列表。
 
 ## 安全工具
+虽然理解以太坊的安全基础知识和聘请专业的审计公司来检查您的代码是不可替代的，但有许多工具可以帮助检查您的代码中的潜在问题。
+
+### 智能合约安全性
+**Slither - Solidity 静态分析框架，用 Python 3 编写。**
++ [Github](https://github.com/crytic/slither)
+
+**MythX - 以太坊智能合约安全分析 API。**
++ [mythx.io](https://mythx.io/)
++ [相关文档](https://docs.mythx.io/)
+
+**Mythril - EVM 字节码安全分析工具。**
++ [mythril](https://github.com/ConsenSys/mythril)
++ [相关文档](https://mythril-classic.readthedocs.io/en/master/about.html)
+
+**Manticore - 在智能合约和二进制文件上使用符号执行工具的命令行接口。**
++ [Github](https://github.com/trailofbits/manticore)
++ [相关文档](https://github.com/trailofbits/manticore/wiki)
+
+**Securify - 用于以太坊智能合约的安全扫描器。**
++ [securify.chainsecurity.com](https://securify.chainsecurity.com/)
++ [Discord](https://discord.com/)
+
+**ERC20 验证器 - 用于检查合同是否符合 ERC20 标准的验证工具。**
++ [erc20-verifier.openzeppelin.com](https://erc20-verifier.openzeppelin.com/)
++ [论坛](https://forum.openzeppelin.com/t/online-erc20-contract-verifier/1575)
+
+### 形式化验证
+
+
+
+### 使用工具
+
+
 
 ## 延伸阅读
 
