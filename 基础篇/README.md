@@ -12,6 +12,7 @@
 + Solidity安全考量&nbsp;&nbsp;[接任务](https://github.com/SecureSmartContract/SecurityLearningForSmartContract/tree/main/%E5%9F%BA%E7%A1%80%E7%AF%87/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%AE%89%E5%85%A8/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E5%AE%89%E5%85%A8/Solidity%E5%AE%89%E5%85%A8%E8%80%83%E9%87%8F)
 + [智能合约安全性](https://github.com/SecureSmartContract/SecurityLearningForSmartContract/tree/main/%E5%9F%BA%E7%A1%80%E7%AF%87/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%AE%89%E5%85%A8/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E5%AE%89%E5%85%A8/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%AE%89%E5%85%A8%E6%80%A7)
 + 智能合约安全指引&nbsp;&nbsp;[接任务](https://github.com/SecureSmartContract/SecurityLearningForSmartContract/tree/main/%E5%9F%BA%E7%A1%80%E7%AF%87/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%AE%89%E5%85%A8/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E5%AE%89%E5%85%A8/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%AE%89%E5%85%A8%E6%8C%87%E5%BC%95)
++ 智能合约缺陷分类和测试用例&nbsp;&nbsp;[任务进行中]
 
 ### DApp的安全
 
