@@ -4,6 +4,8 @@
 下表包含SWC注册表的概述。每一行由SWC编号(ID)、缺陷标题、CWE父级和相关代码示例列表组成。“标识符”列链接到其SWC定义。“关系”列链接到CWE基类或类类型。
 |SWC编号ID|缺陷标题<br>Title|关系<br>Relationships|测试用例<br>Test cases|
 |:-:|:-|:-|:-|
+|SWC-109|未初始化的存储指针|CWE-824: 访问未初始化的指针|+ crypto_roulette.sol<br/>+ crypto_roulette_fixed.sol|
+|SWC-108|状态变量默认可见性|CWE-710: 没有正确的遵守编码标准|+ storage.sol|
 |SWC-107|重入攻击|CWE-841: 行为工作流执行不当|+ modifier_reentrancy.sol<br/>+ modifier_reentrancy_fixed.sol<br/>+ simple_dao.sol<br/>+ simple_dao_fixed.sol|
 |SWC-106|无保护的SELFDESTRUCT指令|CWE-284: 访问控制不当|+ WalletLibrary.sol<br/>+ simple_suicide.sol<br/>+ suicide_multitx_feasible.sol<br/>+ suicide_multitx_infeasible.sol|
 |SWC-105|不受保护的以太币取款|CWE-284: 访问控制不当|+ tokensalechallenge.sol<br/>+ rubixi.sol<br/>+ multiowned_not_vulnerable.sol<br/>+ multiowned_vulnerable.sol<br/>+ simple_ether_drain.sol<br/>+ wallet_01_ok.sol<br/>+ wallet_02_refund_nosub.sol<br/>+ wallet_03_wrong_constructor.sol<br/>+ wallet_04_confused_sign.sol|
