@@ -13,6 +13,6 @@
 |SWC-103|浮动的编译器版本|CWE-664: 对资源生命周期的不适当控制|+ floating_pragma.sol<br/>+ floating_pragma_fixed.sol<br/>+ no_pragma.sol<br/>+ semver_floating_pragma.sol<br/>+ semver_floating_pragma_fixed.sol|
 |SWC-102|过时的编译器版本|CWE-937: 使用含有已知安全漏洞的组件|+ version_0_4_13.sol|
 |SWC-101|整数溢出和下溢|CWE-682: 不正确的计算|+ tokensalechallenge.sol<br/>+ integer_overflow_mapping_sym_1.sol<br/>+ integer_overflow_mapping_sym_1_fixed.sol<br/>+ integer_overflow_minimal.sol<br/>+ integer_overflow_minimal_fixed.sol<br/>+ integer_overflow_mul.sol<br/>+ integer_overflow_mul_fixed.sol<br/>+ integer_overflow_multitx_multifunc_feasible.sol<br/>+ integer_overflow_multitx_multifunc_feasible_fixed.sol<br/>+ integer_overflow_multitx_onefunc_feasible.sol<br/>+ integer_overflow_multitx_onefunc_feasible_fixed.sol<br/>+ integer_overflow_multitx_onefunc_infeasible.sol<br/>+ overflow_simple_add.sol<br/>+ overflow_simple_add_fixed.sol<br/>+ BECToken.sol|
-|[SWC-100](SWC-100函数默认可见性.md)|函数默认可见性|CWE-710: 没有正确的遵守编码标准|+ visibility_not_set.sol<br/>+ visibility_not_set_fixed.sol|
+|[SWC-100](SWC-100函数默认可见性.md)|函数默认可见性|[CWE-710: 没有正确的遵守编码标准](https://cwe.mitre.org/data/definitions/710.html)|+ visibility_not_set.sol<br/>+ visibility_not_set_fixed.sol|
 
 *[更新中......]*
