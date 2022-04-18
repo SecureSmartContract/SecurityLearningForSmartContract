@@ -1,4 +1,4 @@
-Mythril是以太坊EVM字节码的安全分析工具。它检测以太坊、Hedera、Quorum、Vechain、Roostock、Tron和其他兼容evm的区块链构建的智能合约中的安全漏洞。它使用符号执行、SMT方案来分析检测智能合约代码中的各种安全漏洞。
+Mythril 是以太坊EVM字节码的安全分析工具。它检测以太坊、Hedera、Quorum、Vechain、Roostock、Tron 和其他兼容 EVM 的区块链构建的智能合约中的安全漏洞。它使用符号执行、SMT方案来分析检测智能合约代码中的各种安全漏洞。
 
 ## 安装
 
