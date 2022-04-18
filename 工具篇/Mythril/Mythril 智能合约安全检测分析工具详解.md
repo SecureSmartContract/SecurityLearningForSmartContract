@@ -169,7 +169,7 @@ Caller: [SOMEGUY], function: unknown, txdata: 0x01010101, value: 0xde0b6b3a76400
 
 让我们对检测结果做进一步的解释，其中：
 
-SWC ID: 116 —— 表示该漏洞的分类编号，详见 [智能合约缺陷分类和测试用例]([SecurityLearningForSmartContract/基础篇/以太坊的安全/智能合约的安全/智能合约缺陷分类和测试用例 at main · SecureSmartContract/SecurityLearningForSmartContract (github.com)](https://github.com/SecureSmartContract/SecurityLearningForSmartContract/tree/main/基础篇/以太坊的安全/智能合约的安全/智能合约缺陷分类和测试用例))
+SWC ID: 116 —— 表示该漏洞的分类编号，详见 [智能合约缺陷分类和测试用例](https://github.com/SecureSmartContract/SecurityLearningForSmartContract/tree/main/基础篇/以太坊的安全/智能合约的安全/智能合约缺陷分类和测试用例)
 
 Severity: Low  —— 表示该漏洞的严重性程度
 
