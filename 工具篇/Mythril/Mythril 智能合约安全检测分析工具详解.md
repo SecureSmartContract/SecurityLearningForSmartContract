@@ -179,7 +179,7 @@ Contract: Roulette —— 表示检测的合约名称
 
 Function name: fallback —— 表示发现漏洞的函数名称
 
-PC address: 70 —— 这个输出是啥意思不详，有知道的给我留言哈
+PC address: 70 —— 标识程序计数器
 
 Estimated Gas Usage: 918 - 1013 —— 表示估算的 Gas 费用开销
 
