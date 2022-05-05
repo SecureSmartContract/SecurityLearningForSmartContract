@@ -7,7 +7,7 @@
 |SWC-112|Delegatecall调用漏洞|+ proxy.sol<br/>+ proxy_fixed.sol<br/>+ proxy_pattern_false_positive.sol|
 |SWC-111|使用已弃用的Solidity函数|+ deprecated_simple.sol<br/>+ deprecated_simple_fixed.sol|
 |SWC-110|不合规的断言|+ assert_constructor.sol<br/>+ assert_minimal.sol<br/>+ assert_multitx_1.sol<br/>+ assert_multitx_2.sol|
-|SWC-109|未初始化的存储指针|+ crypto_roulette.sol<br/>+ crypto_roulette_fixed.sol|
+|[SWC-109](SWC-109.md)|未初始化的存储指针|+ crypto_roulette.sol<br/>+ crypto_roulette_fixed.sol|
 |[SWC-108](SWC-108.md)|状态变量默认可见性|+ storage.sol|
 |[SWC-107](SWC-107.md)|重入攻击|+ modifier_reentrancy.sol<br/>+ modifier_reentrancy_fixed.sol<br/>+ simple_dao.sol<br/>+ simple_dao_fixed.sol|
 |[SWC-106](SWC-106.md)|无保护的SELFDESTRUCT指令|+ WalletLibrary.sol<br/>+ simple_suicide.sol<br/>+ suicide_multitx_feasible.sol<br/>+ suicide_multitx_infeasible.sol|
